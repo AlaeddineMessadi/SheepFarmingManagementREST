@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+            xmlns:p="http://primefaces.org/ui"> 
+
+
+
+
+<h:head>
+<link rel="stylesheet" type="text/css" href="../../resources/css/style.css" media="screen"/>
+	    <link rel="stylesheet" type="text/css" href="../../resources/css/grid.css" media="screen"/>
+	    <link rel="stylesheet" type="text/css" href="../../resources/reset.css" media="screen"/>
+
+</h:head> 
+<h:body > 
+
+<h:form id="master">
+			<p:dataTable rendered="#{not empty sheepBean.sheeps}"
+						value="#{sheepBean.sheeps}" 
+						var="sh" 
+						rows="5"
+						rowKey="#{sh.id}"
+						paginator="true"
+						paginatorPosition="bottom"
+						filteredValue="#{sheepBean.filteredSheeps}"
+						selectionMode="single"
+						selection="#{sheepBean.sheep}"
+						widgetVar="shTabW">
+						
+				<f:facet name="header">
+						<h:outputText value="All Sheep" />
+				</f:facet>
+				
+				<p:ajax event="rowSelect" listener="#{sheepBean.onRowSelect}" update=":details"/>
+					
+				<p:column headerText="Id" filterBy="#{sh.id}" filterMatchMode="startsWith">
+				<h:outputText value="#{sh.id}" />
+				</p:column>
+				
+				<p:column headerText="Code" filterBy="#{sh.code_sheep}" filterMatchMode="contains">
+				<h:outputText value="#{sh.code_sheep}" />
+				</p:column>
+				<!--
+				<p:column headerText="Birth date" filterBy="#{sh.date_birth}" filterMatchMode="contains">
+				<h:outputText value="#{sh.date_birth}" />
+				</p:column>
+				
+				<p:column headerText="Input date" filterBy="#{sh.date_date_input}" filterMatchMode="contains">
+				<h:outputText value="#{sh.date_date_input}" />
+				</p:column>
+				
+				<p:column headerText="Output date" filterBy="#{sh.date_output}" filterMatchMode="contains">
+				<h:outputText value="#{sh.date_output}" />
+				</p:column>
+				-->
+				
+				<p:column headerText="Input price" filterBy="#{sh.price_input}" filterMatchMode="contains">
+				<h:outputText value="#{sh.price_input}" />
+				</p:column>
+				
+				<p:column headerText="Output price" filterBy="#{sh.price_output}" filterMatchMode="contains">
+				<h:outputText value="#{sh.price_output}" />
+				</p:column>
+				<!--
+				<p:column headerText="Race" filterBy="#{sh.race_sheep}" filterMatchMode="contains">
+				<h:outputText value="#{sh.race_sheep}" />
+				</p:column>
+				
+				<p:column headerText="Note" filterBy="#{sh.remarque}" filterMatchMode="contains">
+				<h:outputText value="#{sh.remarque}" />
+				</p:column>
+				
+				<p:column headerText="Gender" filterBy="#{sh.sexe_sheep}" filterMatchMode="contains">
+				<h:outputText value="#{sh.sexe_sheep}" />
+				</p:column>
+				-->
+			</p:dataTable>
+			<p:commandButton icon="ui-icon-circle-plus" actionListener="#{sheepBean.doNew}" value="new" update=":details" />
+		</h:form>	
+		<p:panel id="details" header="Sheep Details" visible="#{sheepBean.formDisplayed}">
+			<h:form rendered="#{sheepBean.formDisplayed}">
+				<h:panelGrid columns="2">
+					<h:outputText value="Id" />
+					<p:inputText value="#{sheepBean.sheep.id}" />
+					
+					<h:outputText value="Code" />
+					<p:inputText value="#{sheepBean.sheep.code_sheep}" />
+					
+					<h:outputText value="Birth date" />
+					<p:inputText value="#{sheepBean.sheep.date_birth}" />
+					
+					<h:outputText value="Input date" />
+					<p:inputText value="#{sheepBean.sheep.date_date_input}" />
+					
+					<h:outputText value="Output date" />
+					<p:inputText value="#{sheepBean.sheep.date_output}" />
+					
+					<h:outputText value="Input price" />
+					<p:inputText value="#{sheepBean.sheep.price_input}" />
+					
+					<h:outputText value="Output price" />
+					<p:inputText value="#{sheepBean.sheep.price_output}" />
+					
+					<h:outputText value="Race" />
+					<p:inputText value="#{sheepBean.sheep.race_sheep}" />
+					
+					<h:outputText value="Note" />
+					<p:inputText value="#{sheepBean.sheep.remarque}" />
+					
+					<h:outputText value="Gender" />
+					<p:inputText value="#{sheepBean.sheep.sexe_sheep}" />
+					
+					
+					<h:panelGrid columns="3">
+					<p:commandButton action="#{sheepBean.doCancel}" value="Cancel" update=":master :details" />
+					<p:commandButton actionListener="#{sheepBean.doDelete}" value="Delete" update=":master :details" oncomplete="shTabW.filter();" />
+					<p:commandButton actionListener="#{sheepBean.updateSheep}" value="Save" update=":master :details" oncomplete="shTabW.filter();" />
+					</h:panelGrid>
+					
+				</h:panelGrid>
+			</h:form>
+			</p:panel>
+</h:body> 
+
+</html>

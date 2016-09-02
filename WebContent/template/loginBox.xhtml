@@ -1,0 +1,50 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	
+
+<link rel="stylesheet" type="text/css" href="../resources/css/styleLogin.css" />
+	
+	<div id="content1">
+		<h:form >
+		<p:growl showDetail="true" id="growl"></p:growl>
+		<p:messages id="messages"></p:messages>
+		  <h:panelGrid columns="2" rendered="#{!loginBean.logedIn}">
+			
+		     
+			<div>
+				
+				
+		        <p:inputText type="text" placeholder="Username" required="required" id="username"  value="#{loginBean.user.login}" />
+			
+			
+		        <input type="password" placeholder="Password" required="required" id="password" value="#{loginBean.user.pwd}" />
+			</div>
+			<div>
+				
+				<p:commandButton   id="button" action="#{loginBean.doLogin}" value="Login" update="growl,messages"/>
+				
+				<a href="#">Lost your password?</a>
+				
+			</div>
+			</h:panelGrid>
+		<h:outputText value="Bienvenue #{loginBean.user.firstName}" rendered="#{loginBean.logedIn}"/>
+		<h:commandLink action="#{loginBean.logOut()}" value="Log Out" />
+		</h:form>
+		<h:form>
+		<center>
+		<div class="button">
+			<h:commandLink action="#{loginBean.logOut}" value="Register" />
+		</div><!-- button -->
+		</center>
+		</h:form>
+		
+	</div><!-- content --> 
+	
+	
+	
+	
+	   
+</ui:composition>

@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+	
+		<title><ui:insert name="pageTitle"></ui:insert></title>
+		
+	    <link rel="stylesheet" type="text/css" href="../resources/css/style.css" media="screen"/>
+	    <link rel="stylesheet" type="text/css" href="../resources/css/grid.css" media="screen"/>
+	    
+	    
+   
+    <link rel="stylesheet" href="../resources/css/styleLogin.css" type="text/css" />
+	
+		
+		
+	<body>
+
+<!--==============================header=================================-->
+   	
+    	<div id="header" class="headerStyle">
+			<div class="container_12">
+        	<div class="wrapper">
+                    <div class="grid_12">
+                        <div class="wrapper">
+                             <h1><a href="../welcome.xhtml">logo</a></h1>
+                             <div class="links_panel">
+                                <ul>
+                                      
+                                      <li><a href="../welcome.xhtml">Home</a></li>
+                                      <li class="last"><a href="../pages/ContactUs.xhtml">Contact us</a></li>
+                                 </ul> 
+                             </div></div>
+                    </div>
+            </div>
+        </div>                	
+        </div>
+          
+            <div id="content1">
+		<h:form >
+		<p:growl showDetail="true" id="growl"></p:growl>
+		<p:messages id="messages"></p:messages>
+		  <h:panelGrid columns="2" rendered="#{!loginBean.logedIn}">
+			
+		     
+			<div>
+				
+				
+		        <p:inputText type="text" placeholder="Username" required="required" id="username"  value="#{loginBean.user.login}" />
+			
+			
+		        <p:inputText type="text" placeholder="Password" required="required" id="password" value="#{loginBean.user.pwd}" />
+			</div>
+			<div>
+				
+				<p:commandButton   id="button" action="#{loginBean.doLogin}" value="Login" update="growl,messages"/>
+				
+				<a href="#">Lost your password?</a>
+				
+			</div>
+			</h:panelGrid>
+		<h:outputText value="Bienvenue #{loginBean.user.firstName}" rendered="#{loginBean.logedIn}"/>
+		<h:commandLink action="#{loginBean.logOut()}" value="Log Out" />
+		</h:form>
+		<h:form>
+		<center>
+		<div class="button">
+			<h:commandLink action="#{loginBean.logOut}" value="Register" />
+		</div><!-- button -->
+		</center>
+		</h:form>
+		
+	</div><!-- content --> 
+     <div style="float:right; padding-right:30px;padding-bottom:30px;"><a href="../welcome.xhtml"> Back to homepage </a></div>   	
+
+          
+            
+                            
+            
+        
+        </body>
+</ui:component>

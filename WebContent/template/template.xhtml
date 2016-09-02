@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+      
+   		
+		<head>
+		<title><ui:insert name="pageTitle"></ui:insert></title>
+		<h:outputStylesheet library="css" name="style.css"/>
+		<h:outputStylesheet library="css" name="grid.css"/>
+		<h:outputStylesheet library="css" name="reset.css"/>
+	    
+
+       
+		</head>
+		
+
+<h:body>
+   <div >
+<!--==============================header=================================-->
+   	
+    	<div id="header" class="headerStyle">
+			<ui:include src="/template/header.xhtml" />
+			<center>    <h:graphicImage value="/resources/images/shaun.png" /></center>
+        </div>
+    
+        
+        <div class="main">
+             
+            <center> <ui:insert name="menu"></ui:insert></center>
+              
+        </div>
+        
+<!--==============================content================================-->
+<div id="content">
+    	<div class="main">
+        	<div class="inner">
+            	<div class="container_12">
+                	<div class="wrapper">
+                	<center>
+                	<ui:insert name="pageContent" />              	
+                    </center>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!--==============================footer=================================-->
+   
+    	<div class="aligncenter">
+        	<strong>Sheep Farm © 2011  <span>|</span>  <a href="#">Privacy policy</a></strong>
+    	    <!-- {%FOOTER_LINK} -->
+        </div>
+   
+    
+    
+  
+  </div> 
+</h:body>		
+</html>

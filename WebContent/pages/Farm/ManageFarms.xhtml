@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+            xmlns:p="http://primefaces.org/ui"> 
+
+
+
+
+<h:head>
+<link rel="stylesheet" type="text/css" href="../../resources/css/style.css" media="screen"/>
+	    <link rel="stylesheet" type="text/css" href="../../resources/css/grid.css" media="screen"/>
+	    <link rel="stylesheet" type="text/css" href="../../resources/reset.css" media="screen"/>
+
+</h:head> 
+<h:body > 
+
+
+
+
+<h:form id="master" >
+<p:dataTable value="#{farmbean.farms}"
+ var="far" 
+ rows="5" 
+ rowKey="#{far.idFarm}" 
+ paginator="true" 
+ paginatorPosition="botton" 
+ filteredValue="#{farmbean.filteredvalue}" 
+ selectionMode="single" 
+ selection="#{farmbean.farm}" 
+ widgetVar="farTabW">
+
+<f:facet name="header">
+<h:outputText value="all farms" />
+</f:facet>
+
+<p:ajax event="rowSelect" listener="#{farmbean.onrowselect}" update=":details"/>
+
+
+<p:column headerText="#" filterBy="#{far.idFarm}" filterMatchMode="startsWith">
+<h:outputText value="#{far.idFarm}" />
+</p:column>
+<p:column headerText="nom" filterBy="#{far.nomFarm}" filterMatchMode="contains">
+<h:outputText value="#{far.nomFarm}" />
+</p:column>
+
+
+
+<p:column headerText="adresse" filterBy="#{far.adress}" filterMatchMode="contains">
+<h:outputText value="#{far.adress}" />
+</p:column>
+
+<p:column headerText="mail" filterBy="#{far.mail}" filterMatchMode="contains">
+<h:outputText value="#{far.mail}" />
+</p:column>
+<p:column headerText="telephone" filterBy="#{far.telephone}" filterMatchMode="contains">
+<h:outputText value="#{far.telephone}" />
+</p:column>
+
+
+</p:dataTable>
+<p:commandButton icon="ui-icon-circle-plus" value="new" actionListener="#{farmbean.donew}" update=":details" />
+</h:form>
+
+
+<p:panel id="details" header="Farm details" visible="#{farmbean.formdisplayed}"> 
+<h:form rendered="#{farmbean.formdisplayed}" >
+<h:panelGrid columns="2">
+
+<h:outputText value="name" />
+<p:inputText value="#{farmbean.farm.nomFarm}" />
+
+
+<h:outputText value="adress" />
+<p:inputText value="#{farmbean.farm.adress}" />
+
+<h:outputText value="mail" />
+<p:inputText value="#{farmbean.farm.mail}" />
+
+<h:outputText value="telephone" />
+<p:inputText value="#{farmbean.farm.telephone}" />
+
+
+</h:panelGrid>
+<h:panelGrid columns="4">
+<p:commandButton value="ajouter" actionListener="#{farmbean.dosaveorupdate()}" update=":master :details"/>
+<p:commandButton value="delete" actionListener="#{farmbean.dodelete()}" update=":master :details" />
+<p:commandButton value="cancel" actionListener="#{farmbean.docancel()}" update=":details"/>
+<p:commandButton value="update" actionListener="#{farmbean.doupdate()}" update=":master :details" />
+</h:panelGrid>
+</h:form>
+ </p:panel>
+</h:body> 
+
+</html>

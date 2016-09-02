@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<head>
+		<title><ui:insert name="pageTitle"></ui:insert></title>
+		
+	    <link rel="stylesheet" type="text/css" href="../resources/css/style.css" media="screen"/>
+	    <link rel="stylesheet" type="text/css" href="../resources/css/grid.css" media="screen"/>
+	    
+	    
+   
+    <link rel="stylesheet" href="../resources/css/styleContact.css" type="text/css" />
+	
+		</head>
+		
+	<body>
+
+<!--==============================header=================================-->
+   	
+    	<div id="header" class="headerStyle">
+			<div class="container_12">
+        	<div class="wrapper">
+                    <div class="grid_12">
+                        <div class="wrapper">
+                             <h1><a href="../welcome.xhtml">logo</a></h1>
+                             <div class="links_panel">
+                                <ul>
+                                      
+                                      <li><a href="../welcome.xhtml">Home</a></li>
+                                      <li class="last"><a href="#">Contact us</a></li>
+                                 </ul> 
+                             </div></div>
+                    </div>
+            </div>
+        </div>                	
+        </div>
+          
+             <div  class="cover">
+    		<h2 class="contact">Contact Us</h2>
+    		<form id="contactform" action="MAILTO:haifa.bacha@esprit.tn" method="post" enctype="text/plain"> 
+    			<p class="contact"><label for="name">Name</label></p> 
+    			<input id="name" name="name" placeholder="First and last name" required="" tabindex="1" type="text"/> 
+    			 
+    			<p class="contact"><label for="email">Email</label></p> 
+    			<input id="email" name="email" placeholder="example@domain.com" required="" tabindex="2" type="text"/> 
+                
+                <p class="contact"><label for="Subject">Subject</label></p> 
+    			<input id="subject" name="subject" placeholder="Subject" required="" tabindex="2" type="text"/> 
+    			 
+    			<p class="contact"><label for="comment">Your Message</label></p> 
+    			<textarea name="comment" id="comment" tabindex="4"></textarea> <br/>
+    			<input name="submit" id="submit" tabindex="5" value="Send Message" type="submit"/> 	 
+    		</form> 
+     </div>       
+     <div style="float:right; padding-right:30px;padding-bottom:30px;"><a href="../welcome.xhtml"> Back to homepage </a></div>   	
+
+          
+            
+                            
+            
+        
+        </body>
+</html>

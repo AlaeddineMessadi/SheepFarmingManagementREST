@@ -1,0 +1,74 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+                	
+                	<h:outputStylesheet library="css" name="style.css"/>
+		<h:outputStylesheet library="css" name="grid.css"/>
+		<h:outputStylesheet library="css" name="reset.css"/>
+		
+			<h:form id="master">
+			<p:dataTable rendered="#{not empty sheepBean.sheeps}"
+						value="#{sheepBean.sheeps}" 
+						var="sh" 
+						rows="5"
+						rowKey="#{sh.id}"
+						paginator="true"
+						paginatorPosition="bottom"
+						filteredValue="#{sheepBean.filteredSheeps}"
+						selectionMode="single"
+						selection="#{sheepBean.sheep}"
+						widgetVar="shTabW">
+						
+				<f:facet name="header">
+						<h:outputText value="All Sheep" />
+				</f:facet>
+				
+				<p:ajax event="rowSelect" listener="#{sheepBean.onRowSelect}" update=":details"/>
+					
+				<p:column headerText="Id" filterBy="#{sh.id}" filterMatchMode="startsWith">
+				<h:outputText value="#{sh.id}" />
+				</p:column>
+				
+				<p:column headerText="Code" filterBy="#{sh.code_sheep}" filterMatchMode="contains">
+				<h:outputText value="#{sh.code_sheep}" />
+				</p:column>
+				<!--
+				<p:column headerText="Birth date" filterBy="#{sh.date_birth}" filterMatchMode="contains">
+				<h:outputText value="#{sh.date_birth}" />
+				</p:column>
+				
+				<p:column headerText="Input date" filterBy="#{sh.date_date_input}" filterMatchMode="contains">
+				<h:outputText value="#{sh.date_date_input}" />
+				</p:column>
+				
+				<p:column headerText="Output date" filterBy="#{sh.date_output}" filterMatchMode="contains">
+				<h:outputText value="#{sh.date_output}" />
+				</p:column>
+				-->
+				
+				<p:column headerText="Input price" filterBy="#{sh.price_input}" filterMatchMode="contains">
+				<h:outputText value="#{sh.price_input}" />
+				</p:column>
+				
+				<p:column headerText="Output price" filterBy="#{sh.price_output}" filterMatchMode="contains">
+				<h:outputText value="#{sh.price_output}" />
+				</p:column>
+				<!--
+				<p:column headerText="Race" filterBy="#{sh.race_sheep}" filterMatchMode="contains">
+				<h:outputText value="#{sh.race_sheep}" />
+				</p:column>
+				
+				<p:column headerText="Note" filterBy="#{sh.remarque}" filterMatchMode="contains">
+				<h:outputText value="#{sh.remarque}" />
+				</p:column>
+				
+				<p:column headerText="Gender" filterBy="#{sh.sexe_sheep}" filterMatchMode="contains">
+				<h:outputText value="#{sh.sexe_sheep}" />
+				</p:column>
+				-->
+			</p:dataTable>
+			<p:commandButton icon="ui-icon-circle-plus" actionListener="#{sheepBean.doNew}" value="new" update=":details" />
+		</h:form>	
+</ui:composition>

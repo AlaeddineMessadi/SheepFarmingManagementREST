@@ -1,0 +1,56 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+                
+                
+                <h:outputStylesheet library="css" name="style.css"/>
+		<h:outputStylesheet library="css" name="grid.css"/>
+		<h:outputStylesheet library="css" name="reset.css"/>
+                	
+			<p:panel id="details" header="Sheep Details" visible="#{sheepBean.formDisplayed}">
+			<h:form rendered="#{sheepBean.formDisplayed}">
+				<h:panelGrid columns="2">
+					<h:outputText value="Id" />
+					<p:inputText value="#{sheepBean.sheep.id}" />
+					
+					<h:outputText value="Code" />
+					<p:inputText value="#{sheepBean.sheep.code_sheep}" />
+					
+					<h:outputText value="Birth date" />
+					<p:inputText value="#{sheepBean.sheep.date_birth}" />
+					
+					<h:outputText value="Input date" />
+					<p:inputText value="#{sheepBean.sheep.date_date_input}" />
+					
+					<h:outputText value="Output date" />
+					<p:inputText value="#{sheepBean.sheep.date_output}" />
+					
+					<h:outputText value="Input price" />
+					<p:inputText value="#{sheepBean.sheep.price_input}" />
+					
+					<h:outputText value="Output price" />
+					<p:inputText value="#{sheepBean.sheep.price_output}" />
+					
+					<h:outputText value="Race" />
+					<p:inputText value="#{sheepBean.sheep.race_sheep}" />
+					
+					<h:outputText value="Note" />
+					<p:inputText value="#{sheepBean.sheep.remarque}" />
+					
+					<h:outputText value="Gender" />
+					<p:inputText value="#{sheepBean.sheep.sexe_sheep}" />
+					
+					
+					<h:panelGrid columns="3">
+					<p:commandButton action="#{sheepBean.doCancel}" value="Cancel" update=":master :details" />
+					<p:commandButton actionListener="#{sheepBean.doDelete}" value="Delete" update=":master :details" oncomplete="shTabW.filter();" />
+					<p:commandButton actionListener="#{sheepBean.updateSheep}" value="Save" update=":master :details" oncomplete="shTabW.filter();" />
+					</h:panelGrid>
+					
+				</h:panelGrid>
+			</h:form>
+			</p:panel>
+			
+</ui:composition>

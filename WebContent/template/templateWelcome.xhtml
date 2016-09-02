@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+      
+<h:head>
+<p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+			<p:commandButton value="Oui" type="button"
+				styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+			<p:commandButton value="Non" type="button"
+				styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+		</p:confirmDialog>
+	<title><ui:insert name="pageTitle" /></title>
+	<h:outputStylesheet library="css" name="style.css"/>
+	<link rel="stylesheet" type="text/css" href="../resources/css/style.css"/>
+	
+	
+	
+</h:head>      
+      
+<h:body>
+
+    <div id="page">
+        
+        
+        <div id="header" class="headerStyle">
+			<ui:include src="/template/header.xhtml" />
+        </div>
+        
+        
+        <div id="topbar" class="topbarStyle">
+        
+        	<div id="identity">
+        		<ui:include src="" />
+        	</div>
+        	
+        	<div id="languageSwitcher">
+        		<ui:include src="" />
+        	</div><br/>
+        	
+        	<div id="navmenu">
+        		<ui:include src="/template/menu.xhtml" />
+        	</div>
+			
+        </div>
+        
+        
+        <div id="main" class="mainStyle">	
+        
+            <div id="sidebar" class="sidebarStyle">
+                
+                <div id="login" class="loginStyle">
+                    <ui:include src="" />
+                </div><!-- login -->
+                
+                <div class="boxStyle" >
+      				<ui:include src="" />
+                </div><!-- box -->				
+
+            </div>
+            <!-- sidebar -->  
+             
+            	              
+            <div id="content" class="contentStyle">
+                
+                <div id="contheader" class="contheaderStyle">
+                    <h2>
+                    	<ui:insert name="pageContentHeader" />
+                    </h2>
+                </div>
+                		
+                <div id="content2">	
+                    <ui:insert name="pageContent" />
+                </div><!-- content2 -->
+                							              
+            </div><!-- content --> 
+            
+            <div class="clearing"/> 
+
+            <div id="footer">
+                <ui:include src="" />
+            </div>
+            
+        </div><!-- main -->
+    </div><!-- page -->
+</h:body>
+</html>

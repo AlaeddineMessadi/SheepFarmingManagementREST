@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+            xmlns:p="http://primefaces.org/ui"> 
+
+
+<h:head>
+ <h:outputStylesheet library="css" name="aaa.css"/>
+<style>
+
+body{
+background-color:#ADFF2F;
+}
+</style>
+<title>Menu Building</title>
+
+
+
+<h2>Welcome To Menu Building</h2>
+
+
+ <ul>
+                        <li><a href="http://localhost:8383/pfaweb/page/farm/ManageF.jsf">Menu Farm</a></li>
+                        <li><a href="http://localhost:8383/pfaweb/page/farm/Manageadmin.jsf">Menu Administrateur</a></li>
+                        <li><a href="http://localhost:8383/pfaweb/page/farm/Managesheep.jsf">Menu Sheep</a></li>
+                        <li><a href="http://localhost:8383/pfaweb/page/farm/ManageEmployee.jsf">Menu Employee</a></li>
+                                                <li><a href="http://localhost:8383/pfaweb/page/farm/ManageBatim.jsf">Menu Employee</a></li>
+                        
+                    </ul>
+                
+ 
+</h:head> 
+<h:body styleClass=".bcolor"> 
+
+<h:graphicImage library="images" name="ze.jpg" width="1340px" height="213px"/>
+
+
+
+<h:form id="master">
+<p:dataTable value="#{batimentbean.batiments}"
+ var="far" 
+ rows="5" 
+ rowKey="#{far.id_batiment}" 
+ paginator="true" 
+ paginatorPosition="botton" 
+ filteredValue="#{batimentbean.filteredvalue}" 
+ selectionMode="single" 
+ selection="#{batimentbean.batiment}" 
+ widgetVar="farTabW">
+
+<f:facet name="header">
+<h:outputText value="all batiments" />
+</f:facet>
+
+<p:ajax event="rowSelect" listener="#{batimentbean.onrowselect()}" update=":details"/>
+
+
+<p:column headerText="#" filterBy="#{far.id_batiment}" filterMatchMode="startsWith">
+<h:outputText value="#{far.id_batiment}" />
+</p:column>
+<p:column headerText="nom" filterBy="#{far.name_batiment}" filterMatchMode="contains">
+<h:outputText value="#{far.name_batiment}" />
+</p:column>
+
+
+
+<p:column headerText="adresse" filterBy="#{far.capacity}" filterMatchMode="contains">
+<h:outputText value="#{far.capacity}" />
+</p:column>
+
+
+
+
+</p:dataTable>
+<p:commandButton icon="ui-icon-circle-plus" value="new" actionListener="#{batimentbean.donew}" update=":details" />
+</h:form>
+
+
+<p:panel id="details" header="Farm details" visible="#{batimentbean.formdisplayed}"> 
+<h:form rendered="#{batimentbean.formdisplayed}" >
+<h:panelGrid columns="2">
+
+<h:outputText value="name" />
+<p:inputText value="#{batimentbean.batiment.name_batiment}" />
+
+
+<h:outputText value="adress" />
+<p:inputText value="#{batimentbean.batiment.capacity}" />
+
+
+<p:commandButton value="ajouter" actionListener="#{batimentbean.dosaveorupdate()}" update=":master :details"/>
+<p:commandButton value="delete" actionListener="#{batimentbean.dodelete()}" update=":master :details" />
+<p:commandButton value="cancel" actionListener="#{batimentbean.docancel()}" update=":details"/>
+<p:commandButton value="update" actionListener="#{batimentbean.doupdate()}" update=":master :details" />
+
+</h:panelGrid>
+</h:form>
+ </p:panel>
+</h:body> 
+
+</html>
